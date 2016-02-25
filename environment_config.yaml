@@ -1,0 +1,29 @@
+attributes:
+  metadata:
+    label: Selective default gateway
+    description: Ability to change network for default route
+    weight: 110
+    group: network
+  network_name:
+    type: radio
+    weight: 30
+    label: Choose network, that will be used for default route
+    description: ""
+    value: public
+    values:
+      - data:  admin
+        label: Admin
+      - data:  public
+        label: Public
+      - data:  management
+        label: Management
+      - data:  another
+        label: another...
+  another_network_name:
+    value: ""
+    label: another network name
+    weight: 40
+    type: text
+    restrictions:
+      - condition: "settings:selective_default_gateway.network_name.value != 'another'"
+        action: "hide"

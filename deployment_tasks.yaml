@@ -1,0 +1,13 @@
+- id: mangle_network_scheme_for_selective_default_gateway
+  type: puppet
+  version: 2.0.0
+  groups: [primary-controller, controller,
+           cinder, cinder-block-device, cinder-vmware, compute, ceph-osd,
+           primary-mongo, mongo, virt, ironic]
+  required_for: [globals]
+  requires: [hiera]
+  reexecute_on: [deploy_changes]
+  parameters:
+    puppet_manifest: puppet/manifests/mangle_network_scheme_for_selective_default_gateway.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 3600
